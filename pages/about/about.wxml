@@ -1,0 +1,21 @@
+<view class="container">
+  <view class="containers">
+    <view class="content">
+      <view class="spec_name" bindtap="copyBlogUrl">
+        <view class="spec_left">
+          <image src="../../images/avatar.jpg" mode='aspectFill'></image>
+          <view class="spec_content">
+            <text>我的博客</text>
+            <text class="spec_content_desc">分享生活~</text>
+          </view>
+        </view>
+        <image src="../../images/jt.png" mode='aspectFill'></image>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='share_btn'>
+  <image src='../../images/icon/guide_tag.png' mode="widthFix"></image>
+  <text>分享</text>
+</view>
+<button open-type='share' class='share_btyn'></button>
