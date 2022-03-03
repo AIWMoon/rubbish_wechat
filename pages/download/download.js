@@ -5,83 +5,60 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imageurl: imgUrl +'/Public/uploads/rubbish'
+    
   },
-
+  
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
 
   },
-  bindImage: function (event) {
-    var imagesUrls = event.currentTarget.dataset.imgsurl;
-    var that = this
-    wx.getSetting({
-      success(res) {
-        if (!res.authSetting['scope.writePhotosAlbum']) {
-          wx.openSetting({
-            success: function (data) {
-              wx.downloadFile({
-                //需要下载的图片地址
-                url: imagesUrls,
-                success(res) {
-                  // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
-                  if (res.statusCode === 200) {
-                    wx.saveImageToPhotosAlbum({
-                      filePath: res.tempFilePath,
-                      success: function (res) {
-                        wx.showToast({
-                          title: '保存成功',
-                        });
-                        that.setData({
-                          excode: false
-                        })
-                      },
-                      fail: function (res) {
-                        wx.showToast({
-                          title: '保存失败',
-                        });
-                      }
-                    });
-                  }
-                }
-              });
-            },
-            fail: function (data) {
-              console.log("openSetting: fail");
-            }
-          });
-        } else {
-          wx.downloadFile({
-            //需要下载的图片地址
-            url: imagesUrls,
-            success(res) {
-              // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
-              if (res.statusCode === 200) {
-                wx.saveImageToPhotosAlbum({
-                  filePath: res.tempFilePath,
-                  success: function (res) {
-                    wx.showToast({
-                      title: '保存成功',
-                    });
-                    that.setData({
-                      excode: false
-                    })
-                  },
-                  fail: function (res) {
-                    wx.showToast({
-                      title: '保存失败',
-                    });
-                  }
-                });
-              }
-            }
-          });
+  // 下载垃圾分类指南
+  LjflImage:function(){
+    var that = this;
+    wx.downloadFile({
+      url: 'https://gitee.com/mezhenyue/picture/raw/master/down02.jpg',
+      type: image,
+      success: function(res) {
+        // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+        if (res.statusCode === 200){
+            wx.showToast({
+            title: '下载成功',
+            icon: 'success',
+            mask: true,
+            duration: 1500
+          })
+          that.setData({
+            downloadPicturePath: rss.tempFilePath//将下载的图片路径传给页面显示
+          })
         }
       }
     })
   },
+  
+// 下载办公室垃圾分类指南
+BgljImage:function(){
+  var that = this;
+  wx.downloadFile({
+    url: 'https://gitee.com/mezhenyue/picture/raw/master/down01.jpg',
+    success: function(res) {
+      console.log(res.tempFilePath);
+      // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+      if (res.statusCode === 200){
+        wx.showToast({
+          title: '下载成功',
+          icon: '',
+          mask: true,
+          duration: 1500
+        })
+        that.setData({
+          downloadPicturePath: rss.tempFilePath//将下载的图片路径传给页面显示
+        })
+      }
+    }
+  })
+},
   /**
    * 用户点击右上角分享
    */

@@ -1,4 +1,4 @@
-const requestUrl = require('../../config').requestUrl
+// const requestUrl = require('../../config').requestUrl
 const recorderManager = wx.getRecorderManager()
 var utils = require('../../utils/util.js');
 Page({
@@ -153,15 +153,13 @@ Page({
     })
     //加载搜索热词
     wx.request({
-      url: requestUrl + 'Rubbish/hots',
+      url: 'http://api.tianapi.com/hotlajifenlei/index',
       data: {
-
+        key:'cbd1acd103a210a39190a1e90f38679e'
       },
       success(res) {
-        if (res.data.status == 0) {
-          that.setData({
-            hot_list: res.data.result
-          })
+        if (res.data.code == 200) {
+          console.log(res.data)
         } else {
           wx.showToast({
             title: '网络异常',

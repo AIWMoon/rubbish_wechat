@@ -3,11 +3,11 @@
  */
 
 // 主机域名
-const host = 'example.com'
+const host = 'http://api.tianapi.com'
 const config = {
   // 下面为具体Api地址
   host,
-  requestUrl: `https://${host}/Api/`,
+  requestUrl: `cbd1acd103a210a39190a1e90f38679e`,
   imgUrl: `https://${host}`
 }
 
